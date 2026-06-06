@@ -20,7 +20,7 @@ const LoginPage = ({ onNavigate }) => {
       if (isSignedIn) {
         try {
           const profile = await fetchCampusProfile();
-          if (profile && profile.results) {
+          if (profile && profile.results && profile.results.readiness_score != null) {
             // Re-hydrate localStorage for Dashboard compatibility
             const dashboardData = {
               final_score: profile.results.readiness_score,
