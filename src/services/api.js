@@ -90,21 +90,32 @@ export const fetchDashboardMetrics = async () => {
     { name: 'Network', value: 0 },
     { name: 'Trenching', value: 0 }
   ];
+  let schoolName = "";
 
   if (savedResultStr) {
-    const result = JSON.parse(savedResultStr);
-    readinessScore = result.final_score || 0;
-    if (result.split_budget) {
+    const savedResult = JSON.parse(savedResultStr);
+    
+    // Check if it's the direct assessment format or the campus-profile format
+    if (savedResult.final_score !== undefined) {
+      readinessScore = savedResult.final_score;
+    }
+    
+    if (savedResult.split_budget) {
       budgetAllocation = [
-        { name: 'Chargers', value: result.split_budget.chargers || 0 },
-        { name: 'Solar Buffer', value: result.split_budget.solar_backup || 0 },
-        { name: 'Network', value: result.split_budget.wifi_access_points || 0 },
-        { name: 'Trenching', value: result.split_budget.trenching || 0 }
+        { name: 'Chargers', value: savedResult.split_budget.chargers || 0 },
+        { name: 'Solar Buffer', value: savedResult.split_budget.solar_backup || 0 },
+        { name: 'Network', value: savedResult.split_budget.wifi_access_points || 0 },
+        { name: 'Trenching', value: savedResult.split_budget.trenching || 0 }
       ];
+    }
+
+    if (savedResult.school_name) {
+      schoolName = savedResult.school_name;
     }
   }
 
   return {
+    schoolName,
     readinessScore,
     votes: 0,
     budgetAllocation,

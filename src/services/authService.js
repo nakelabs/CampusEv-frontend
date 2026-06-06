@@ -2,11 +2,16 @@
 import { signUp, signIn, signOut, getCurrentUser, confirmSignUp, resetPassword, confirmResetPassword } from 'aws-amplify/auth';
 
 // Sign Up
-export const register = async (email, password) => {
+export const register = async (email, password, schoolName) => {
     const { isSignUpComplete, userId } = await signUp({
         username: email,
         password,
-        options: { userAttributes: { email } }
+        options: { 
+            userAttributes: { 
+                email,
+                'custom:school_name': schoolName
+            } 
+        }
     });
     return { isSignUpComplete, userId };
 };

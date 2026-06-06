@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 // ---- Step 1: Registration Form ----
 const RegisterForm = ({ onSuccess }) => {
   const { register } = useAuth();
-  const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '' });
+  const [formData, setFormData] = useState({ schoolName: '', email: '', password: '', confirmPassword: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -25,7 +25,7 @@ const RegisterForm = ({ onSuccess }) => {
     }
     setIsLoading(true);
     try {
-      await register(formData.email, formData.password);
+      await register(formData.email, formData.password, formData.schoolName);
       onSuccess(formData.email); // Pass email to OTP step
     } catch (err) {
       setError(err.message || 'Registration failed. Please try again.');
@@ -42,6 +42,19 @@ const RegisterForm = ({ onSuccess }) => {
           <p>{error}</p>
         </div>
       )}
+
+      <div className="space-y-1.5">
+        <label className="text-sm font-semibold text-slate-700">School Name</label>
+        <div className="relative">
+          <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <input
+            type="text" name="schoolName" required
+            value={formData.schoolName} onChange={handleChange}
+            placeholder="Enter your university name"
+            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all placeholder:text-slate-400"
+          />
+        </div>
+      </div>
 
       <div className="space-y-1.5">
         <label className="text-sm font-semibold text-slate-700">Email Address</label>

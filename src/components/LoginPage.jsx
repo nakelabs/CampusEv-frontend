@@ -24,7 +24,8 @@ const LoginPage = ({ onNavigate }) => {
             // Re-hydrate localStorage for Dashboard compatibility
             const dashboardData = {
               final_score: profile.results.readiness_score,
-              split_budget: profile.results.split_budget_data
+              split_budget: profile.results.split_budget_data,
+              school_name: profile.school_name || profile.results?.school_name
             };
             localStorage.setItem('assessmentResult', JSON.stringify(dashboardData));
             onNavigate('dashboard');

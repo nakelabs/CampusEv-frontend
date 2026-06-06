@@ -73,10 +73,15 @@ const Dashboard = ({ onNavigate }) => {
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 pb-6 border-b border-slate-200 gap-4">
         <div>
           <h1 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-
+            <Zap className="text-slate-900 w-8 h-8" />
             CampusEV Intel
           </h1>
           <p className="text-slate-500 font-medium text-sm mt-1">Dashboard Overview</p>
+          {metrics.schoolName && (
+            <p className="text-emerald-700 font-bold text-base mt-2 bg-emerald-50 inline-block px-3 py-1 rounded-md">
+              Welcome to {metrics.schoolName}
+            </p>
+          )}
         </div>
         <div className="flex flex-wrap gap-3">
           <button
