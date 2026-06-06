@@ -8,6 +8,8 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import { useAuth } from './context/AuthContext';
 
+import CampaignGenerator from './components/CampaignGenerator';
+
 const ProtectedRoute = ({ children, onNavigate }) => {
   const { user } = useAuth();
   if (!user) return <LoginPage onNavigate={onNavigate} />;
@@ -15,11 +17,27 @@ const ProtectedRoute = ({ children, onNavigate }) => {
 };
 
 function App() {
-  const [view, setView] = useState('landing');
+  const [view, setView] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('view') || 'landing';
+  });
+
+  const [urlParams, setUrlParams] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return Object.fromEntries(params.entries());
+  });
 
   // Navigation handler
-  const navigateTo = (newView) => {
+  const navigateTo = (newView, params = {}) => {
     setView(newView);
+    setUrlParams(params);
+    
+    // Update URL without reload to support refreshing/sharing
+    const newUrl = new URL(window.location);
+    newUrl.search = ''; // clear old
+    newUrl.searchParams.set('view', newView);
+    Object.keys(params).forEach(key => newUrl.searchParams.set(key, params[key]));
+    window.history.pushState({}, '', newUrl);
   };
 
   return (
@@ -36,17 +54,23 @@ function App() {
       
       {view === 'dashboard' && (
         <ProtectedRoute onNavigate={navigateTo}>
-          <Dashboard onNavigate={(v) => navigateTo(v)} />
+          <Dashboard onNavigate={navigateTo} />
         </ProtectedRoute>
       )}
       
       {view === 'heatmap' && (
         <ProtectedRoute onNavigate={navigateTo}>
-          <Heatmap onNavigate={(v) => navigateTo(v)} />
+          <Heatmap onNavigate={navigateTo} />
+        </ProtectedRoute>
+      )}
+
+      {view === 'campaign' && (
+        <ProtectedRoute onNavigate={navigateTo}>
+          <CampaignGenerator onNavigate={navigateTo} />
         </ProtectedRoute>
       )}
       
-      {view === 'student-portal' && <StudentPortal />}
+      {view === 'student-portal' && <StudentPortal params={urlParams} />}
     </div>
   );
 }

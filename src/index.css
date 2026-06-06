@@ -1,7 +1,33 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/googlesans/v14/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLU94Ytzcw.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLV154Ytzcw.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 900;
+  src: url('https://fonts.gstatic.com/s/googlesans/v14/4UabrENHsxJlGDuGo1OIlLV154Ytzcw.woff2') format('woff2');
+}
+
 @theme {
   --color-background: #f5f4f0;
+  --font-sans: "Google Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
@@ -10,6 +36,6 @@
     color: var(--color-slate-900);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-sans);
   }
 }

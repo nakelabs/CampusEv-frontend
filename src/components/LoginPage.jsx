@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Zap, Mail, Lock, ArrowRight, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { fetchCampusProfile } from '../services/api';
 
 const LoginPage = ({ onNavigate }) => {
   const { login } = useAuth();
@@ -17,7 +18,22 @@ const LoginPage = ({ onNavigate }) => {
     try {
       const { isSignedIn, nextStep } = await login(email, password);
       if (isSignedIn) {
-        onNavigate('landing'); // Navigate to the app after login
+        try {
+          const profile = await fetchCampusProfile();
+          if (profile && profile.results) {
+            // Re-hydrate localStorage for Dashboard compatibility
+            const dashboardData = {
+              final_score: profile.results.readiness_score,
+              split_budget: profile.results.split_budget_data
+            };
+            localStorage.setItem('assessmentResult', JSON.stringify(dashboardData));
+            onNavigate('dashboard');
+          } else {
+            onNavigate('assess');
+          }
+        } catch (e) {
+          onNavigate('assess');
+        }
       } else if (nextStep?.signInStep === 'CONFIRM_SIGN_UP') {
         setError('Please verify your email first. Check your inbox for the confirmation code.');
       }
