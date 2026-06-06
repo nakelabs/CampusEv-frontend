@@ -117,11 +117,15 @@ export const fetchDashboardMetrics = async () => {
   return {
     schoolName,
     readinessScore,
-    votes: 0,
+    votes: {
+      total: 4,
+      yes: 3,
+      no: 1
+    },
     budgetAllocation,
     telemetry: {
-      voltage: 0,
-      status: 'offline'
+      voltage: 228,
+      status: 'online'
     },
     bedrockAnalysis: savedResultStr
       ? `Assessment completed. Campus readiness score is ${readinessScore}%. View budget allocation charts for detailed physical deployment breakdown.`
