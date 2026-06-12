@@ -14,6 +14,9 @@ CampusEV Intel is an AI-powered EV readiness platform and decision-support syste
 * **Backend:** FastAPI 
 * **AI/Mapping Tools:** ]OpenAI API / Google maps
 
+* Hackathon Context
+CampusEV Intel was built as a winning prototype for the Arthurite Integrated hackathon to solve the complex logistical and financial challenges universities face when adopting electric vehicle infrastructure .
+
 ## Installation
 1. Clone the repository:
 ```bash
@@ -39,8 +42,7 @@ Bash
    npm run dev
 Open your browser and navigate to http://localhost:3000 (or the port specified by your framework) to access the administrator dashboard.
 
-Hackathon Context
-CampusEV Intel was built as a winning prototype for the Arthurite Integrated hackathon to solve the complex logistical and financial challenges universities face when adopting electric vehicle infrastructure .
+
 
 Contributing
 Contributions are welcome! If you have ideas for new features or improvements, please fork the repository and submit a pull request.
