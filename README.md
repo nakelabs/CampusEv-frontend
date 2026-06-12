@@ -1,16 +1,47 @@
-# React + Vite
+# CampusEV Intel 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+CampusEV Intel is an AI-powered EV readiness platform and decision-support system designed for university administrators. Developed for the Arthurite Integrated hackathon, this tool helps academic institutions evaluate, plan, and budget for the transition to electric mobility on campus.
 
-Currently, two official plugins are available:
+## Key Features
+*  Interactive Deployment Heatmap:** Visually plan EV charger locations across campus while estimating trenching and installation costs.
+* **"Smart-Split" Budget Allocator:** An intelligent financial tool that helps administrators efficiently distribute funds across infrastructure, procurement, and maintenance.
+* ** Procurement Chatbot:** An AI-driven conversational assistant designed to help users navigate EV equipment sourcing and vendor selection.
+* ** Real-Time Demand Polling:** A QR-code-based system to capture live data on student and staff readiness for EV adoption, ensuring infrastructure matches actual demand.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
+* **Frontend:** React
+* **Backend:** FastAPI 
+* **AI/Mapping Tools:** ]OpenAI API / Google maps
 
-## React Compiler
+## Installation
+1. Clone the repository:
+```bash
+   git clone [https://github.com/nakelabs/campusev-intel.git]
+Navigate to the project directory:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Bash
+   cd campusev-intel
+Install the dependencies:
 
-## Expanding the ESLint configuration
+Bash
+   npm install  # or yarn install
+Set up environment variables:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Create a .env file in the root directory.
+
+Add necessary API keys (e.g., VITE_MAP_API_KEY, OPENAI_API_KEY).(contact me)
+
+Usage
+Start the development server:
+
+Bash
+   npm run dev
+Open your browser and navigate to http://localhost:3000 (or the port specified by your framework) to access the administrator dashboard.
+
+Hackathon Context
+CampusEV Intel was built as a winning prototype for the Arthurite Integrated hackathon to solve the complex logistical and financial challenges universities face when adopting electric vehicle infrastructure .
+
+Contributing
+Contributions are welcome! If you have ideas for new features or improvements, please fork the repository and submit a pull request.
+
